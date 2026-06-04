@@ -1,0 +1,72 @@
+.style-value-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 0;
+  flex: 1;
+}
+
+.style-value-editor--select select,
+.style-value-editor select {
+  width: 100%;
+}
+
+.style-value-editor__custom {
+  width: 100%;
+  font-size: 0.75rem;
+}
+
+.style-value-editor__color {
+  width: 100%;
+  height: 28px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.css-panel__row .style-value-editor {
+  flex: 1;
+  min-width: 6rem;
+}
+
+.css-panel__value-select {
+  width: 100%;
+  font-size: 0.75rem;
+}
+
+.field .style-value-editor select,
+.field .style-value-editor input[type='text'] {
+  width: 100%;
+}
+
+.style-value-editor--size {
+  gap: 0.4rem;
+}
+
+.style-value-editor__presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.style-value-editor__preset {
+  font-size: 0.6875rem;
+  padding: 0.15rem 0.4rem;
+  border: 1px solid var(--ve-border);
+  border-radius: 4px;
+  background: var(--ve-surface-2);
+  color: var(--ve-muted);
+  cursor: pointer;
+}
+
+.style-value-editor__preset:hover {
+  color: var(--ve-fg);
+  border-color: var(--ve-accent);
+}
+
+.style-value-editor__preset.is-active {
+  color: var(--ve-accent);
+  border-color: var(--ve-accent);
+  background: rgba(62, 207, 142, 0.12);
+}

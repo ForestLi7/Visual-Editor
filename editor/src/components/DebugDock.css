@@ -1,0 +1,119 @@
+.debug-dock {
+  position: relative;
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+.debug-dock__tabs {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.debug-dock__tab {
+  background: transparent;
+  border: none;
+  color: var(--ve-muted);
+  font-size: 0.75rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.debug-dock__tab--active {
+  color: var(--ve-accent);
+  background: var(--ve-accent-dim);
+}
+
+.debug-dock__toggle {
+  background: transparent;
+  border: none;
+  color: var(--ve-muted);
+  font-size: 0.7rem;
+  margin-left: 0.25rem;
+  cursor: pointer;
+}
+
+.debug-dock__badge {
+  font-size: 0.65rem;
+  padding: 0 0.35rem;
+  border-radius: 10px;
+  background: var(--ve-surface-2);
+}
+
+.debug-dock__badge--err {
+  background: rgba(255, 107, 107, 0.2);
+  color: var(--ve-danger);
+}
+
+.debug-dock__panel {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  right: 0;
+  width: min(520px, calc(100vw - 2rem));
+  max-height: min(320px, 45vh);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: var(--ve-surface);
+  border: 1px solid var(--ve-border);
+  border-radius: var(--ve-radius);
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.45);
+  z-index: 200;
+}
+
+.debug-dock__body {
+  overflow: auto;
+  padding: 0.5rem;
+  flex: 1;
+  min-height: 0;
+}
+
+.debug-dock__console-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.debug-dock__line {
+  font-family: var(--ve-mono);
+  font-size: 0.7rem;
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.2rem 0;
+  border-bottom: 1px solid var(--ve-border);
+}
+
+.debug-dock__line time {
+  color: var(--ve-muted);
+  flex-shrink: 0;
+}
+
+.debug-dock__line--error {
+  color: var(--ve-danger);
+}
+
+.debug-dock__line--warn {
+  color: #ff9f43;
+}
+
+.debug-dock__empty {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--ve-muted);
+}
+
+.debug-dock__console-meta {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.65rem;
+  color: var(--ve-muted);
+}
+
+.debug-dock__panel .network-panel {
+  padding: 0.5rem;
+  overflow: auto;
+}

@@ -1,0 +1,43 @@
+{
+  "name": "visual-editor",
+  "displayName": "Visual Editor",
+  "description": "在 VS Code 中打开可视化编辑器（需本地运行 editor 服务）",
+  "version": "0.1.0",
+  "publisher": "visual-editor",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": ["Other"],
+  "activationEvents": ["onCommand:visualEditor.open"],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "Visual Editor",
+      "properties": {
+        "visualEditor.serverUrl": {
+          "type": "string",
+          "default": "http://localhost:5174",
+          "description": "可视化编辑器服务地址（部署到服务器后改为 https://你的域名）"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "visualEditor.open",
+        "title": "Visual Editor: 打开可视化编辑器"
+      },
+      {
+        "command": "visualEditor.openDemo",
+        "title": "Visual Editor: 启动演示并打开"
+      }
+    ]
+  },
+  "scripts": {
+    "build": "tsc -p .",
+    "watch": "tsc -watch -p ."
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.8.3"
+  }
+}

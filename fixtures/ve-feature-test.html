@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark" data-ve-allow-shell-theme="true">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Visual Editor — 全功能测试页</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root,
+      [data-theme='dark'] {
+        --ve-test-bg: #0a0c10;
+        --ve-test-surface: rgba(22, 26, 34, 0.72);
+        --ve-test-surface-2: rgba(30, 36, 48, 0.9);
+        --ve-test-border: rgba(255, 255, 255, 0.08);
+        --ve-test-text: #eef1f6;
+        --ve-test-muted: #8b939e;
+        --ve-test-accent: #3ecf8e;
+        --ve-test-accent-2: #6c9eff;
+        --ve-test-danger: #ff6b6b;
+        --ve-test-glow: rgba(62, 207, 142, 0.35);
+        --ve-test-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
+      }
+
+      [data-theme='light'] {
+        --ve-test-bg: #f4f6fa;
+        --ve-test-surface: rgba(255, 255, 255, 0.88);
+        --ve-test-surface-2: #ffffff;
+        --ve-test-border: rgba(15, 23, 42, 0.1);
+        --ve-test-text: #0f172a;
+        --ve-test-muted: #64748b;
+        --ve-test-accent: #0d9f6e;
+        --ve-test-accent-2: #3b6fd9;
+        --ve-test-danger: #dc2626;
+        --ve-test-glow: rgba(13, 159, 110, 0.2);
+        --ve-test-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: 'DM Sans', system-ui, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        color: var(--ve-test-text);
+        background: var(--ve-test-bg);
+        min-height: 100vh;
+      }
+
+      body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        background:
+          radial-gradient(ellipse 70% 50% at 15% -10%, var(--ve-test-glow), transparent 55%),
+          radial-gradient(ellipse 50% 40% at 90% 10%, rgba(108, 158, 255, 0.18), transparent 50%),
+          radial-gradient(ellipse 60% 50% at 50% 100%, rgba(62, 207, 142, 0.08), transparent 60%);
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .page {
+        position: relative;
+        z-index: 1;
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 2.5rem 1.5rem 4rem;
+      }
+
+      .badge-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1.25rem;
+      }
+
+      .badge {
+        font-size: 0.6875rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        padding: 0.35rem 0.65rem;
+        border-radius: 999px;
+        border: 1px solid var(--ve-test-border);
+        background: var(--ve-test-surface);
+        color: var(--ve-test-muted);
+      }
+
+      .badge--accent {
+        color: var(--ve-test-accent);
+        border-color: rgba(62, 207, 142, 0.35);
+        background: rgba(62, 207, 142, 0.1);
+      }
+
+      .hero {
+        text-align: center;
+        padding: 2.5rem 1rem 3rem;
+        margin-bottom: 2.5rem;
+      }
+
+      .hero__title {
+        font-family: 'Fraunces', Georgia, serif;
+        font-size: clamp(2.25rem, 5vw, 3.25rem);
+        font-weight: 700;
+        line-height: 1.15;
+        margin: 0 0 0.75rem;
+        letter-spacing: -0.02em;
+      }
+
+      .hero__title em {
+        font-style: normal;
+        color: var(--ve-test-accent);
+      }
+
+      .hero__lead {
+        max-width: 36rem;
+        margin: 0 auto 1.5rem;
+        color: var(--ve-test-muted);
+        font-size: 1.0625rem;
+      }
+
+      .hero__actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.75rem;
+      }
+
+      .section {
+        margin-bottom: 2.75rem;
+      }
+
+      .section__head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1.25rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid var(--ve-test-border);
+      }
+
+      .section__title {
+        font-family: 'Fraunces', Georgia, serif;
+        font-size: 1.375rem;
+        font-weight: 600;
+        margin: 0;
+      }
+
+      .section__hint {
+        font-size: 0.8125rem;
+        color: var(--ve-test-muted);
+        margin: 0;
+      }
+
+      .panel {
+        background: var(--ve-test-surface);
+        backdrop-filter: blur(12px);
+        border: 1px solid var(--ve-test-border);
+        border-radius: 16px;
+        padding: 1.5rem;
+        box-shadow: var(--ve-test-shadow);
+      }
+
+      /* Flex 测试区 */
+      .flex-playground {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        padding: 1.25rem;
+        border-radius: 12px;
+        background: var(--ve-test-surface-2);
+        border: 1px dashed rgba(62, 207, 142, 0.35);
+        min-height: 120px;
+      }
+
+      .flex-playground__item {
+        flex: 1 1 140px;
+        padding: 1rem 1.25rem;
+        border-radius: 10px;
+        background: linear-gradient(135deg, rgba(62, 207, 142, 0.15), rgba(108, 158, 255, 0.12));
+        border: 1px solid var(--ve-test-border);
+        font-weight: 600;
+        font-size: 0.875rem;
+        text-align: center;
+      }
+
+      /* Grid 测试区 */
+      .grid-gallery {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: auto;
+        gap: 20px;
+      }
+
+      @media (max-width: 768px) {
+        .grid-gallery {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .grid-card {
+        padding: 1.25rem;
+        border-radius: 12px;
+        background: var(--ve-test-surface-2);
+        border: 1px solid var(--ve-test-border);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .grid-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+      }
+
+      .grid-card h3 {
+        margin: 0 0 0.35rem;
+        font-size: 1rem;
+      }
+
+      .grid-card p {
+        margin: 0;
+        font-size: 0.8125rem;
+        color: var(--ve-test-muted);
+      }
+
+      /* 样式 / 颜色样本 */
+      .style-swatch {
+        display: inline-block;
+        padding: 0.75rem 1.25rem;
+        border-radius: 10px;
+        font-weight: 600;
+        color: #0a0c10;
+        background-color: var(--ve-test-accent);
+        box-shadow: 0 4px 20px var(--ve-test-glow);
+        margin-top: 0.5rem;
+      }
+
+      .style-muted-box {
+        margin-top: 1rem;
+        padding: 1rem 1.25rem;
+        border-radius: 10px;
+        color: var(--ve-test-muted);
+        background-color: var(--ve-test-surface-2);
+        border: 1px solid var(--ve-test-border);
+      }
+
+      /* 按钮 + Props */
+      .demo-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.65rem 1.25rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        font-family: inherit;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: transform 0.15s ease, opacity 0.15s ease;
+      }
+
+      .demo-btn:hover:not(:disabled) {
+        transform: translateY(-1px);
+      }
+
+      .demo-btn:disabled {
+        opacity: 0.45;
+        cursor: not-allowed;
+      }
+
+      .demo-btn--primary {
+        color: #0a0c10;
+        background: linear-gradient(135deg, var(--ve-test-accent), #2eb87a);
+      }
+
+      .demo-btn--secondary {
+        color: var(--ve-test-text);
+        background: var(--ve-test-surface-2);
+        border: 1px solid var(--ve-test-border);
+      }
+
+      .demo-btn--danger {
+        color: #fff;
+        background: linear-gradient(135deg, var(--ve-test-danger), #e85555);
+      }
+
+      .btn-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 1rem;
+      }
+
+      /* 媒体 */
+      .media-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.25rem;
+      }
+
+      .media-card {
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid var(--ve-test-border);
+        background: var(--ve-test-surface-2);
+      }
+
+      .media-card img,
+      .media-card video {
+        display: block;
+        width: 100%;
+        height: auto;
+        vertical-align: middle;
+      }
+
+      .media-card figcaption {
+        padding: 0.75rem 1rem;
+        font-size: 0.8125rem;
+        color: var(--ve-test-muted);
+      }
+
+      .media-card audio {
+        width: 100%;
+        padding: 0.75rem 1rem;
+      }
+
+      /* 结构拖放：可重排列表 */
+      .reorder-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .reorder-list__item {
+        padding: 0.85rem 1rem;
+        border-radius: 8px;
+        background: var(--ve-test-surface-2);
+        border: 1px solid var(--ve-test-border);
+        font-size: 0.875rem;
+      }
+
+      /* 调试触发 */
+      .debug-panel {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .debug-panel button {
+        font-family: inherit;
+        font-size: 0.8125rem;
+        padding: 0.5rem 0.85rem;
+        border-radius: 8px;
+        border: 1px solid var(--ve-test-border);
+        background: var(--ve-test-surface-2);
+        color: var(--ve-test-text);
+        cursor: pointer;
+      }
+
+      .debug-panel button:hover {
+        border-color: var(--ve-test-accent);
+        color: var(--ve-test-accent);
+      }
+
+      .checklist {
+        margin: 0;
+        padding-left: 1.15rem;
+        color: var(--ve-test-muted);
+        font-size: 0.8125rem;
+        columns: 2;
+        column-gap: 2rem;
+      }
+
+      @media (max-width: 640px) {
+        .checklist {
+          columns: 1;
+        }
+      }
+
+      .checklist li {
+        margin-bottom: 0.35rem;
+        break-inside: avoid;
+      }
+
+      footer {
+        text-align: center;
+        padding-top: 2rem;
+        font-size: 0.75rem;
+        color: var(--ve-test-muted);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page" data-ve-id="ve-page-root" data-ve-component="Page">
+      <div class="badge-row" data-ve-id="ve-badges">
+        <span class="badge badge--accent">全功能测试</span>
+        <span class="badge">导入此 HTML 至编辑器 5174</span>
+        <span class="badge">fixtures/ve-feature-test.html</span>
+      </div>
+
+      <!-- 文字编辑 · NLP · 主题 -->
+      <header class="hero" data-ve-id="ve-hero" data-ve-component="Hero">
+        <h1 class="hero__title" data-ve-id="ve-hero-title">
+          可视化编辑器 <em data-ve-id="ve-hero-accent">全能力</em> 测试
+        </h1>
+        <p class="hero__lead" data-ve-id="ve-hero-lead">
+          双击标题可就地改字；侧栏可改样式、Flex/Grid、媒体与 Props。导出前请点选各区块验证。
+        </p>
+        <div class="hero__actions" data-ve-id="ve-hero-actions">
+          <button
+            type="button"
+            class="demo-btn demo-btn--primary"
+            data-ve-id="ve-hero-cta"
+            data-ve-component="Button"
+            data-ve-props='[{"name":"disabled","type":"boolean","value":false},{"name":"variant","type":"enum","value":"primary","options":["primary","secondary","danger"]}]'
+            data-ve-source='{"file":"fixtures/ve-feature-test.html","line":1}'
+          >
+            主按钮 · Props
+          </button>
+          <button
+            type="button"
+            class="demo-btn demo-btn--secondary"
+            data-ve-id="ve-hero-secondary"
+            data-ve-component="Button"
+            data-ve-props='[{"name":"disabled","type":"boolean","value":false},{"name":"variant","type":"enum","value":"secondary","options":["primary","secondary","danger"]}]'
+          >
+            次按钮 · variant
+          </button>
+        </div>
+      </header>
+
+      <!-- Flex 布局 + overlay -->
+      <section class="section" data-ve-id="ve-section-flex" data-ve-component="Section">
+        <div class="section__head">
+          <h2 class="section__title" data-ve-id="ve-flex-title">Flex 布局</h2>
+          <p class="section__hint">display: flex · 对齐九宫格 · gap · 画布参考线</p>
+        </div>
+        <div class="panel">
+          <div
+            class="flex-playground"
+            data-ve-id="ve-flex-container"
+            style="display: flex; flex-direction: row; justify-content: space-between; align-items: center; gap: 16px"
+          >
+            <div class="flex-playground__item" data-ve-id="ve-flex-a">项目 A</div>
+            <div class="flex-playground__item" data-ve-id="ve-flex-b">项目 B</div>
+            <div class="flex-playground__item" data-ve-id="ve-flex-c">项目 C</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Grid 布局 -->
+      <section class="section" data-ve-id="ve-section-grid">
+        <div class="section__head">
+          <h2 class="section__title" data-ve-id="ve-grid-title">Grid 布局</h2>
+          <p class="section__hint">列/行滑块 · grid-template · column-gap</p>
+        </div>
+        <div
+          class="grid-gallery panel"
+          data-ve-id="ve-grid-container"
+          style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px"
+        >
+          <article class="grid-card" data-ve-id="ve-grid-card-1">
+            <h3>栅格 1</h3>
+            <p>选中容器改列数</p>
+          </article>
+          <article class="grid-card" data-ve-id="ve-grid-card-2">
+            <h3>栅格 2</h3>
+            <p>align-content 预设</p>
+          </article>
+          <article class="grid-card" data-ve-id="ve-grid-card-3">
+            <h3>栅格 3</h3>
+            <p>结构模式可拖放重排</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- 颜色 · 间距 · 圆角 · 阴影 -->
+      <section class="section" data-ve-id="ve-section-style">
+        <div class="section__head">
+          <h2 class="section__title" data-ve-id="ve-style-title">样式与 Token</h2>
+          <p class="section__hint">color · background · padding · border-radius · opacity</p>
+        </div>
+        <div class="panel" data-ve-id="ve-style-panel">
+          <p data-ve-id="ve-style-desc">下方色块使用 accent 色，可在侧栏换色或选设计 Token。</p>
+          <span
+            class="style-swatch"
+            data-ve-id="ve-style-swatch"
+            style="background-color: #3ecf8e; color: #0a0c10; padding: 12px 20px; border-radius: 10px; opacity: 1"
+            >主色样本</span
+          >
+          <div
+            class="style-muted-box"
+            data-ve-id="ve-style-box"
+            style="margin-top: 16px; padding: 16px 20px; border-radius: 10px"
+          >
+            边距与背景可在 Design / CSS 双 Tab 中编辑。
+          </div>
+        </div>
+      </section>
+
+      <!-- 媒体：图 / 视频 / 音频 + 导出 script URL -->
+      <section class="section" data-ve-id="ve-section-media">
+        <div class="section__head">
+          <h2 class="section__title" data-ve-id="ve-media-title">媒体</h2>
+          <p class="section__hint">img · video · audio · OSS 上传 · 导出 URL 替换</p>
+        </div>
+        <div class="media-grid">
+          <figure class="media-card" data-ve-id="ve-media-figure-img">
+            <img
+              id="ve-export-img"
+              data-ve-id="ve-media-img"
+              src="https://picsum.photos/seed/ve-feature-test/480/270"
+              alt="测试图片：可改 src / alt 或上传替换"
+              width="480"
+              height="270"
+              loading="lazy"
+            />
+            <figcaption data-ve-id="ve-media-img-cap">图片 · 网络面板可见 img 请求</figcaption>
+          </figure>
+          <figure class="media-card" data-ve-id="ve-media-figure-video">
+            <video
+              data-ve-id="ve-media-video"
+              controls
+              poster="https://picsum.photos/seed/ve-video-poster/480/270"
+              width="480"
+              preload="metadata"
+            >
+              <source
+                data-ve-id="ve-media-video-src"
+                src="https://www.w3schools.com/html/mov_bbb.mp4"
+                type="video/mp4"
+              />
+            </video>
+            <figcaption data-ve-id="ve-media-video-cap">视频 · poster / src</figcaption>
+          </figure>
+          <figure class="media-card" data-ve-id="ve-media-figure-audio">
+            <audio data-ve-id="ve-media-audio" controls preload="none">
+              <source
+                data-ve-id="ve-media-audio-src"
+                src="https://www.w3schools.com/html/horse.mp3"
+                type="audio/mpeg"
+              />
+            </audio>
+            <figcaption data-ve-id="ve-media-audio-cap">音频 · source src</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- 结构拖放 -->
+      <section class="section" data-ve-id="ve-section-structure">
+        <div class="section__head">
+          <h2 class="section__title" data-ve-id="ve-structure-title">结构编辑</h2>
+          <p class="section__hint">左栏「结构」模式 · 拖放重排同级节点</p>
+        </div>
+        <div class="panel">
+          <ul class="reorder-list" data-ve-id="ve-reorder-list">
+            <li class="reorder-list__item" data-ve-id="ve-reorder-1">列表项 1 — 拖我到 2 或 3 下方</li>
+            <li class="reorder-list__item" data-ve-id="ve-reorder-2">列表项 2 — Ctrl+点击多选</li>
+            <li class="reorder-list__item" data-ve-id="ve-reorder-3">列表项 3 — Esc 取消选中</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 控制台 / 网络 -->
+      <section class="section" data-ve-id="ve-section-debug">
+        <div class="section__head">
+          <h2 class="section__title" data-ve-id="ve-debug-title">调试区</h2>
+          <p class="section__hint">底栏 控制台 · 网络 Tab</p>
+        </div>
+        <div class="panel">
+          <div class="debug-panel" data-ve-id="ve-debug-buttons">
+            <button type="button" data-ve-id="ve-btn-log" id="ve-trigger-log">console.log</button>
+            <button type="button" data-ve-id="ve-btn-warn" id="ve-trigger-warn">console.warn</button>
+            <button type="button" data-ve-id="ve-btn-error" id="ve-trigger-error">console.error</button>
+            <button type="button" data-ve-id="ve-btn-fetch-ok" id="ve-trigger-fetch-ok">fetch 成功</button>
+            <button type="button" data-ve-id="ve-btn-fetch-fail" id="ve-trigger-fetch-fail">fetch 失败</button>
+            <button type="button" data-ve-id="ve-btn-xhr" id="ve-trigger-xhr">XHR</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 验收清单 -->
+      <section class="section" data-ve-id="ve-section-checklist">
+        <div class="section__head">
+          <h2 class="section__title" data-ve-id="ve-checklist-title">建议验收项</h2>
+        </div>
+        <div class="panel">
+          <ul class="checklist" data-ve-id="ve-checklist">
+            <li>点选 / 树联动 / 面包屑 / 悬停描边</li>
+            <li>Design：Display → Flex / Grid 专面板</li>
+            <li>CSS Tab：筛选属性、添加自定义属性</li>
+            <li>色板 Token、ColorPicker、非 Token 告警</li>
+            <li>宽高手动输入 auto / 100% / px（勿误显计算像素）</li>
+            <li>文字双击、侧栏 textarea、CommandBar NLP</li>
+            <li>Props：disabled、variant 枚举</li>
+            <li>媒体改址、导出 HTML、内联 script URL 替换</li>
+            <li>撤销重做 Ctrl+Z / Y</li>
+            <li>结构模式拖放、多选 Ctrl+点击</li>
+            <li>预览页主题 VE_SET_THEME（本页带 data-ve-allow-shell-theme；普通粘贴页不随 Shell 切换）</li>
+            <li>网络：字体 CSS、图片、fetch、XHR</li>
+          </ul>
+        </div>
+      </section>
+
+      <footer data-ve-id="ve-footer">
+        Visual Editor · fixtures/ve-feature-test.html · 仅供本地导入测试
+      </footer>
+    </div>
+
+    <!-- 导出测试：脚本内保留旧图 URL，改图后导出应替换 -->
+    <script id="ve-export-script" data-ve-id="ve-inline-script">
+      (function () {
+        var EXPORT_DEMO_URL = 'https://picsum.photos/seed/ve-feature-test/480/270';
+        window.__VE_TEST_EXPORT_URL__ = EXPORT_DEMO_URL;
+
+        console.info('[ve-test] 页面已加载，打开底栏「控制台」「网络」查看');
+
+        document.getElementById('ve-trigger-log')?.addEventListener('click', function () {
+          console.log('[ve-test] 手动 log', { time: Date.now() });
+        });
+        document.getElementById('ve-trigger-warn')?.addEventListener('click', function () {
+          console.warn('[ve-test] 手动 warn');
+        });
+        document.getElementById('ve-trigger-error')?.addEventListener('click', function () {
+          console.error('[ve-test] 手动 error（测试用）');
+        });
+        document.getElementById('ve-trigger-fetch-ok')?.addEventListener('click', function () {
+          fetch('https://jsonplaceholder.typicode.com/todos/1')
+            .then(function (r) {
+              return r.json();
+            })
+            .then(function (d) {
+              console.log('[ve-test] fetch ok', d);
+            })
+            .catch(function (e) {
+              console.warn('[ve-test] fetch err', e);
+            });
+        });
+        document.getElementById('ve-trigger-fetch-fail')?.addEventListener('click', function () {
+          fetch('https://invalid.ve-test.example/api/nope').catch(function () {});
+        });
+        document.getElementById('ve-trigger-xhr')?.addEventListener('click', function () {
+          var xhr = new XMLHttpRequest();
+          xhr.open('GET', 'https://httpbin.org/get?ve=test');
+          xhr.onload = function () {
+            console.log('[ve-test] xhr', xhr.status);
+          };
+          xhr.onerror = function () {
+            console.warn('[ve-test] xhr error');
+          };
+          xhr.send();
+        });
+
+        /* 自动触发一批网络请求（页面加载后） */
+        setTimeout(function () {
+          fetch('https://jsonplaceholder.typicode.com/users/1').catch(function () {});
+        }, 400);
+      })();
+    </script>
+  </body>
+</html>

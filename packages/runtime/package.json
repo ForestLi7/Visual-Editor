@@ -1,0 +1,16 @@
+{
+  "name": "@ve/runtime",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "./dist/runtime.js",
+  "scripts": {
+    "build": "tsc && node scripts/bundle.mjs",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "@ve/core": "*"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  }
+}

@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/main.tsx","./src/bridge/iframebridge.ts","./src/components/componenttree.tsx","./src/components/designsidebar.tsx","./src/components/diffdrawer.tsx","./src/store/editorstore.ts","./src/views/connectview.tsx","./src/views/workbenchview.tsx","./server/ve-api-plugin.ts"],"errors":true,"version":"5.9.3"}

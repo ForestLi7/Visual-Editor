@@ -1,0 +1,17 @@
+[Unit]
+Description=Visual Editor (Vite Preview + API)
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+WorkingDirectory=/opt/visual-editor/visual-editor-release
+Environment=VE_BASE_PATH=/visual-editor/
+Environment=PORT=5174
+# EnvironmentFile=/opt/visual-editor/visual-editor-release/deploy/.env
+ExecStart=/usr/bin/bash scripts/start-production.sh
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

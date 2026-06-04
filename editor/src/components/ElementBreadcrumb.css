@@ -1,0 +1,64 @@
+.element-breadcrumb {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  font-family: var(--ve-mono);
+  font-size: 0.75rem;
+}
+
+.element-breadcrumb--empty {
+  color: var(--ve-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.element-breadcrumb__segment {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+  flex-shrink: 1;
+}
+
+.element-breadcrumb__sep::before {
+  content: '›';
+  margin: 0 0.35rem;
+  color: var(--ve-muted);
+  opacity: 0.7;
+  user-select: none;
+}
+
+.element-breadcrumb__crumb {
+  border: none;
+  background: transparent;
+  color: var(--ve-muted);
+  padding: 0.125rem 0.375rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: color 0.12s, background 0.12s;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: 1.4;
+  max-width: 7.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.element-breadcrumb__crumb:hover:not(:disabled) {
+  color: var(--ve-text);
+  background: var(--ve-surface-2);
+}
+
+.element-breadcrumb__crumb--active {
+  color: var(--ve-accent);
+  font-weight: 600;
+  background: var(--ve-accent-dim);
+}
+
+.element-breadcrumb__crumb:disabled {
+  cursor: default;
+  opacity: 0.85;
+}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>线框对照 — Visual Editor</title>
+  <style>
+    body { font-family: system-ui; background: #111; color: #eee; padding: 2rem; }
+    .frame { border: 1px dashed #444; padding: 1rem; margin: 1rem 0; max-width: 900px; }
+    pre { font-size: 11px; line-height: 1.3; color: #8b929a; }
+  </style>
+</head>
+<body>
+  <h1>静态线框对照</h1>
+  <p>可运行原型请使用 <a href="/">编辑器主页</a>。</p>
+  <div class="frame">
+    <pre>
+┌──────────────────────────────────────────────────────────────────┐
+│ ◆ demo-app  │ http://localhost:5173  │ 撤销 重做 │ 应用变更(3) │
+├──────────┬───────────────────────────────────────┬───────────────┤
+│ 组件树    │         [ iframe 运行时画布 ]          │  设计侧边栏    │
+├──────────┴───────────────────────────────────────┴───────────────┤
+│ 元素路径 │ 控制台 │ [Diff 预览]                                      │
+└──────────────────────────────────────────────────────────────────┘
+    </pre>
+  </div>
+</body>
+</html>

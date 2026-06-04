@@ -1,0 +1,276 @@
+/* VS Code 风格并排 diff（随编辑器主题切换面板色） */
+.git-diff-file {
+  margin-bottom: 1rem;
+  border: 1px solid var(--ve-diff-border);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--ve-diff-bg);
+}
+
+.git-diff-file__header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--ve-diff-panel);
+  border-bottom: 1px solid var(--ve-diff-border);
+  font-size: 0.8125rem;
+}
+
+.git-diff-file__select {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  min-width: 0;
+  flex: 1;
+}
+
+.git-diff-file__path {
+  font-family: var(--ve-mono);
+  font-weight: 600;
+  color: var(--ve-text);
+}
+
+.git-diff-file__desc {
+  color: var(--ve-muted);
+  font-size: 0.75rem;
+  flex-shrink: 0;
+  max-width: 28%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.git-diff-file__stats {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: auto;
+  flex-shrink: 0;
+  font-family: var(--ve-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.git-diff-file__stat--muted {
+  color: var(--ve-muted);
+  font-weight: 400;
+}
+
+.git-diff-file__stat--add {
+  color: #3fb950;
+}
+
+.git-diff-file__stat--del {
+  color: #f85149;
+}
+
+.git-diff-file__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.25rem 0.75rem;
+  background: var(--ve-diff-panel);
+  border-bottom: 1px solid var(--ve-diff-border);
+  font-size: 0.75rem;
+}
+
+.git-diff-file__view-label {
+  color: var(--ve-muted);
+}
+
+.git-diff-file__nav {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.git-diff-file__nav-pos {
+  color: var(--ve-muted);
+  font-family: var(--ve-mono);
+  min-width: 3.5rem;
+  text-align: center;
+}
+
+.sbs-diff__panes-head {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 0.25rem 0.75rem 0.25rem 2.75rem;
+  background: var(--ve-diff-bg);
+  border-bottom: 1px solid var(--ve-diff-border);
+  font-size: 0.6875rem;
+  color: var(--ve-muted);
+}
+
+.sbs-diff__pane-title--new {
+  padding-left: 2rem;
+}
+
+.sbs-diff__scroll-outer {
+  display: flex;
+  max-height: min(52vh, 480px);
+  background: var(--ve-diff-bg);
+}
+
+.sbs-diff__scroll {
+  flex: 1;
+  overflow: auto;
+  position: relative;
+  min-width: 0;
+}
+
+.sbs-diff__gutter-overlay {
+  position: absolute;
+  left: calc(50% - 14px);
+  top: 0;
+  width: 28px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.sbs-diff__connector {
+  fill: rgba(56, 139, 253, 0.22);
+  stroke: rgba(56, 139, 253, 0.45);
+  stroke-width: 1;
+}
+
+.sbs-diff {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-family: ui-monospace, 'Cascadia Code', 'SF Mono', Menlo, Consolas, var(--ve-mono);
+  font-size: 12px;
+  line-height: var(--sbs-line-height, 20px);
+}
+
+.sbs-diff__row {
+  height: var(--sbs-line-height, 20px);
+}
+
+.sbs-diff__row--active {
+  outline: 1px solid rgba(56, 139, 253, 0.55);
+  outline-offset: -1px;
+}
+
+.sbs-diff__ln-cell {
+  width: 3rem;
+  min-width: 3rem;
+  max-width: 3rem;
+  padding: 0 0.5rem;
+  text-align: right;
+  color: var(--ve-diff-ln);
+  user-select: none;
+  vertical-align: top;
+  background: var(--ve-diff-bg);
+  border-right: 1px solid var(--ve-diff-border);
+  white-space: nowrap;
+}
+
+.sbs-diff__bridge-cell {
+  width: 28px;
+  min-width: 28px;
+  max-width: 28px;
+  padding: 0;
+  background: var(--ve-diff-bg);
+  border: none;
+}
+
+.sbs-diff__code-cell {
+  vertical-align: top;
+  padding: 0 0.5rem;
+  white-space: pre;
+  overflow: hidden;
+  color: var(--ve-diff-text);
+}
+
+.sbs-diff__code-cell code {
+  font-family: inherit;
+  white-space: pre;
+}
+
+.sbs-diff__code-cell--equal {
+  background: var(--ve-diff-bg);
+}
+
+.sbs-diff__code-cell--left.sbs-diff__code-cell--delete {
+  background: #4b1818;
+}
+
+.sbs-diff__code-cell--right.sbs-diff__code-cell--insert {
+  background: #1a3d26;
+}
+
+html[data-theme='light'] .sbs-diff__code-cell--left.sbs-diff__code-cell--delete {
+  background: #ffebe9;
+}
+
+html[data-theme='light'] .sbs-diff__code-cell--right.sbs-diff__code-cell--insert {
+  background: #e6ffec;
+}
+
+.sbs-diff__code-cell--ghost {
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--ve-diff-bg),
+    var(--ve-diff-bg) 4px,
+    var(--ve-diff-panel) 4px,
+    var(--ve-diff-panel) 8px
+  );
+}
+
+.sbs-diff__inline-mark {
+  background: rgba(255, 200, 0, 0.35);
+  color: inherit;
+  padding: 0;
+  border-radius: 2px;
+}
+
+.sbs-diff__code-cell--left.sbs-diff__code-cell--delete .sbs-diff__inline-mark {
+  background: rgba(255, 120, 120, 0.45);
+}
+
+.sbs-diff__code-cell--right.sbs-diff__code-cell--insert .sbs-diff__inline-mark {
+  background: rgba(120, 255, 160, 0.35);
+}
+
+.sbs-diff__minimap {
+  width: 12px;
+  flex-shrink: 0;
+  background: var(--ve-diff-panel);
+  border-left: 1px solid var(--ve-diff-border);
+  position: relative;
+  cursor: pointer;
+}
+
+.sbs-diff__minimap-mark {
+  position: absolute;
+  left: 1px;
+  right: 1px;
+  height: 3px;
+  border-radius: 1px;
+  transform: translateY(-50%);
+}
+
+.sbs-diff__minimap-mark--del {
+  background: #f85149;
+}
+
+.sbs-diff__minimap-mark--add {
+  background: #3fb950;
+}
+
+.sbs-diff__minimap-mark--both {
+  background: linear-gradient(90deg, #f85149 50%, #3fb950 50%);
+}
+
+.sbs-diff__minimap-thumb {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 24px;
+  background: rgba(121, 121, 121, 0.35);
+  border: 1px solid rgba(121, 121, 121, 0.5);
+  border-radius: 2px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}

@@ -1,0 +1,20 @@
+.grid-panel__slider input[type='range'] {
+  width: 100%;
+  margin-top: 0.25rem;
+}
+
+.grid-panel__advanced-toggle {
+  margin-bottom: 0.5rem;
+}
+
+.grid-panel__gap-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.flex-panel__hint {
+  font-size: 0.7rem;
+  color: var(--ve-muted);
+  margin: 0.25rem 0 0;
+}

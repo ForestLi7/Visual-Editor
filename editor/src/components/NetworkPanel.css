@@ -1,0 +1,137 @@
+.network-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.network-panel__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: space-between;
+}
+
+.network-panel__stats {
+  font-size: 0.7rem;
+  color: var(--ve-muted);
+}
+
+.network-panel__fail {
+  color: var(--ve-danger);
+  font-style: normal;
+}
+
+.network-panel__search {
+  flex: 1;
+  min-width: 120px;
+  max-width: 200px;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--ve-border);
+  border-radius: 6px;
+  background: var(--ve-surface-2);
+  color: inherit;
+}
+
+.network-panel__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.network-panel__filter--on {
+  border-color: var(--ve-accent) !important;
+  color: var(--ve-accent) !important;
+}
+
+.network-panel__body {
+  max-height: min(200px, 35vh);
+  overflow: auto;
+  border: 1px solid var(--ve-border);
+  border-radius: 6px;
+}
+
+.network-panel__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.7rem;
+  font-family: var(--ve-mono);
+}
+
+.network-panel__table th {
+  text-align: left;
+  padding: 0.35rem 0.5rem;
+  background: var(--ve-surface-2);
+  color: var(--ve-muted);
+  position: sticky;
+  top: 0;
+}
+
+.network-panel__table td {
+  padding: 0.3rem 0.5rem;
+  border-top: 1px solid var(--ve-border);
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.network-panel__row {
+  cursor: pointer;
+}
+
+.network-panel__row:hover {
+  background: var(--ve-surface-2);
+}
+
+.network-panel__row--sel {
+  background: var(--ve-accent-dim);
+}
+
+.network-panel__row--fail td {
+  color: var(--ve-danger);
+}
+
+.network-panel__empty {
+  padding: 1rem;
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--ve-muted);
+}
+
+.network-panel__detail {
+  font-size: 0.7rem;
+  padding: 0.5rem;
+  background: var(--ve-surface-2);
+  border-radius: 6px;
+  border: 1px solid var(--ve-border);
+}
+
+.network-panel__detail-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.network-panel__detail-row span {
+  flex-shrink: 0;
+  color: var(--ve-muted);
+  width: 2.5rem;
+}
+
+.network-panel__detail-row code {
+  word-break: break-all;
+  font-family: var(--ve-mono);
+}
+
+.network-panel__detail-row--err code {
+  color: var(--ve-danger);
+}
+
+.network-panel__detail-hint {
+  margin: 0.35rem 0 0;
+  color: var(--ve-muted);
+  font-size: 0.65rem;
+}

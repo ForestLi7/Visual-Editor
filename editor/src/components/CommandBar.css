@@ -1,0 +1,70 @@
+.command-bar-wrap {
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--ve-border);
+  background: var(--ve-surface);
+}
+
+.command-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem 0.375rem;
+}
+
+.command-bar__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  padding: 0 1rem 0.5rem;
+}
+
+.command-bar__chip {
+  border: 1px solid var(--ve-border);
+  background: var(--ve-surface-2);
+  color: var(--ve-muted);
+  font-size: 0.6875rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.command-bar__chip:hover:not(:disabled) {
+  border-color: var(--ve-accent);
+  color: var(--ve-accent);
+}
+
+.command-bar__chip:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.command-bar__multi {
+  font-size: 0.75rem;
+  color: var(--ve-accent);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.command-bar__input {
+  flex: 1;
+  background: var(--ve-surface-2);
+  border: 1px solid var(--ve-border);
+  border-radius: var(--ve-radius);
+  padding: 0.5rem 0.75rem;
+  color: var(--ve-text);
+  font-size: 0.8125rem;
+}
+
+.command-bar__input:focus {
+  outline: 2px solid var(--ve-accent-dim);
+  border-color: var(--ve-accent);
+}
+
+.command-bar__feedback {
+  font-size: 0.75rem;
+  color: var(--ve-accent);
+  max-width: 280px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

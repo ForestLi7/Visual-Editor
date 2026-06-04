@@ -1,0 +1,87 @@
+.console-panel {
+  position: relative;
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+.console-panel__toggle {
+  background: transparent;
+  border: none;
+  color: var(--ve-muted);
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.console-panel__badge {
+  font-size: 0.65rem;
+  padding: 0 0.35rem;
+  border-radius: 10px;
+  background: var(--ve-surface-2);
+}
+
+.console-panel__badge--err {
+  background: rgba(255, 107, 107, 0.2);
+  color: var(--ve-danger);
+}
+
+.console-panel__badge--warn {
+  background: rgba(255, 159, 67, 0.2);
+  color: #ff9f43;
+}
+
+.console-panel--open .console-panel__body {
+  display: block;
+}
+
+.console-panel__body {
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 6px);
+  right: 0;
+  width: min(420px, calc(100vw - 2rem));
+  max-height: min(240px, 40vh);
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: var(--ve-surface);
+  border: 1px solid var(--ve-border);
+  border-radius: var(--ve-radius);
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.45);
+  z-index: 200;
+}
+
+.console-panel__body ul {
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem;
+}
+
+.console-line {
+  font-family: var(--ve-mono);
+  font-size: 0.7rem;
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.2rem 0;
+  border-bottom: 1px solid var(--ve-border);
+}
+
+.console-line time {
+  color: var(--ve-muted);
+  flex-shrink: 0;
+}
+
+.console-line--error {
+  color: var(--ve-danger);
+}
+
+.console-line--warn {
+  color: #ff9f43;
+}
+
+.console-panel__empty {
+  padding: 1rem;
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--ve-muted);
+}

@@ -1,0 +1,15 @@
+{
+  "projectId": "demo-app",
+  "tokens": {
+    "--color-primary": "#3ecf8e",
+    "--color-secondary": "#6c9eff",
+    "--color-danger": "#ff6b6b",
+    "--color-text": "#e8eaed",
+    "--color-muted": "#8b929a",
+    "--color-surface": "#1a1d23",
+    "--color-bg": "#0d0f12"
+  },
+  "fileMap": {
+    "demo-app": "demo-app/src/App.tsx"
+  }
+}
